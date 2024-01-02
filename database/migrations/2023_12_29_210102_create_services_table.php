@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->decimal('amount', 9, 2);
             $table->string('status');
-            $table->date('request_date');
+            $table->date('requested_at');
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable(); // Prazo de conclusão
             $table->date('finished_at')->nullable(); // Data em que foi concluído

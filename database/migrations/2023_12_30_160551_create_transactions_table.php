@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('wallet_id')->constrained();
-            $table->string('identifier'); // Cliente, Aula, Uber, Venda, Fatura, Mercado
+            $table->string('identifier'); // Cliente, Aula, Aplicativo, Venda, Fatura, Mercado, Combustível
             $table->tinyText('description');
             $table->date('date');
             $table->decimal('amount', 9, 2);
