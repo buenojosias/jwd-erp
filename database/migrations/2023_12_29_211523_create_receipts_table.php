@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('receipts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('client_id')->constrained();
+            $table->foreignId('transaction_id')->constrained();
             $table->date('date');
             $table->decimal('amount', 9, 2);
             $table->text('note')->nullable();

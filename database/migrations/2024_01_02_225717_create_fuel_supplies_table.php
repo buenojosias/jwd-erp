@@ -17,8 +17,8 @@ return new class extends Migration
             $table->date('date');
             $table->string('company');
             $table->decimal('liters', 6, 3);
-            $table->decimal('price', 6, 2);
-            $table->decimal('amount', 6, 2);
+            $table->decimal('price', 6, 2); // Preço por litro
+            $table->decimal('amount', 6, 2); // Valor total
             $table->timestamps();
         });
     }

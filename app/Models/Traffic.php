@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Traffic extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'date',
+        'time',
+        'identifier',
+        'destination',
+        'initial_km',
+        'final_km',
+        'distance'
+    ];
 }
