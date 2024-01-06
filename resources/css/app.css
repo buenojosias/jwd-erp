@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+h1 {
+    @apply text-2xl font-semibold text-gray-900;
+}
+
+.table-wrapper {
+    @apply inline-block min-w-full align-middle;
+}
+table {
+    @apply min-w-full divide-y divide-gray-200;
+}
+table > thead {
+    @apply bg-gray-50;
+}
+table > tbody {
+    @apply divide-y divide-gray-200 bg-white;
+}
+table th {
+    @apply px-3 py-3.5 first:pl-4 last:pr-4 last:sm:pr-3 text-left text-sm font-semibold text-gray-900;
+}
+table tr > td {
+    @apply whitespace-nowrap px-3 py-4 text-sm text-gray-500 first:pl-4 first:pr-3 first:font-medium first:text-gray-900 last:py-0;
+}

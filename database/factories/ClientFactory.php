@@ -17,7 +17,11 @@ class ClientFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'reference' => fake()->randomElement(['Igreja', 'UTFPR', 'Vizinhança']),
+            'whatsapp' => fake()->phoneNumber(),
+            'phone' => fake()->phoneNumber(),
+            'email' => fake()->email()
         ];
     }
 }

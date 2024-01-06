@@ -22,7 +22,7 @@ class Client extends Model
 
     public function parent(): BelongsTo
     {
-        return $this->belongsTo(Client::class, 'client_id');
+        return $this->belongsTo(Client::class, 'recommended_by');
     }
 
     public function services(): HasMany
