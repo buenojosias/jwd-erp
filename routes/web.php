@@ -1,6 +1,7 @@
 <?php
 
-use App\Livewire\Clients\ListClient;
+use App\Livewire\Client\ListClient;
+use App\Livewire\Client\ShowClient;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,5 +26,6 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 Route::get('/clientes', ListClient::class)->name('client.list')->lazy();
+Route::get('/clientes/{client}', ShowClient::class)->name('client.show')->lazy();
 
 require __DIR__.'/auth.php';

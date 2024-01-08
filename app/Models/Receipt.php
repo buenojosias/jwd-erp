@@ -18,6 +18,10 @@ class Receipt extends Model
         'note'
     ];
 
+    protected $casts = [
+        'date' => 'date:Y-m-d',
+    ];
+
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class);

@@ -22,5 +22,18 @@ table th {
     @apply px-3 py-3.5 first:pl-4 last:pr-4 last:sm:pr-3 text-left text-sm font-semibold text-gray-900;
 }
 table tr > td {
-    @apply whitespace-nowrap px-3 py-4 text-sm text-gray-500 first:pl-4 first:pr-3 first:font-medium first:text-gray-900 last:py-0;
+    @apply text-wrap whitespace-nowrap px-3 py-4 text-sm text-gray-500 first:pl-4 first:pr-3 first:font-medium first:text-gray-900 last:py-0;
+}
+
+dl.detail {
+    @apply sm:divide-y sm:divide-gray-200;
+}
+dl.detail > div {
+    @apply py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-4 px-4 sm:px-6;
+}
+dl dt {
+    @apply text-sm font-medium text-gray-500;
+}
+dl dd {
+    @apply mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0;
 }

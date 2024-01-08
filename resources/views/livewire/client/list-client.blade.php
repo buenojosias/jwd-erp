@@ -27,7 +27,11 @@
                     <tbody>
                         @foreach ($clients as $client)
                             <tr>
-                                <td>{{ $client->name }}</td>
+                                <td>
+                                    <a href="{{ route('client.show', $client) }}" wire:navigate>
+                                        {{ $client->name }}
+                                    </a>
+                                </td>
                                 <td>{{ $client->whatsapp }}</td>
                                 <td>{{ $client->reference }}</td>
                                 <td>{{ $client->parent->name ?? '' }}</td>
@@ -48,8 +52,7 @@
             </x-slot>
         </x-card>
     </div>
-    <x-modal name="createModal" x-on:open="$wire.loadIndications" x-on:close="$wire.clear"
-        persistent>
+    <x-modal name="createModal" x-on:open="$wire.loadIndications" x-on:close="$wire.clear" persistent>
         <x-card title="Adicionar cliente">
             <form class="space-y-4">
                 <x-input label="Nome" wire:model="name" />
@@ -67,18 +70,13 @@
                         @endforeach
                     </x-native-select>
                 </div>
-                <x-slot name="footer" class="flex justify-end gap-x-4">
-                    <x-button flat label="Cancelar" x-on:click="close" />
-                    <x-button type="submit" primary label="Salvar" wire:click="submit" />
+                <x-slot name="footer">
+                    <div class="flex justify-end gap-x-4">
+                        <x-button flat label="Cancelar" x-on:click="close" />
+                        <x-button type="submit" primary label="Salvar" wire:click="submit" />
+                    </div>
                 </x-slot>
             </form>
         </x-card>
-        @script
-            <script>
-                $wire.on('client-created', () => {
-                    this.close()
-                })
-            </script>
-        @endscript
     </x-modal>
 </div>

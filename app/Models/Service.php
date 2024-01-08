@@ -23,6 +23,13 @@ class Service extends Model
         'finished_at'
     ];
 
+    protected $casts = [
+        'requested_at' => 'date:Y-m-d',
+        'start_date' => 'date:Y-m-d',
+        'end_date' => 'date:Y-m-d',
+        'finished_at' => 'date:Y-m-d',
+    ];
+
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class);

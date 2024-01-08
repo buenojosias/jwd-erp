@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Clients;
+namespace App\Livewire\Client;
 
 use App\Models\Client;
 use Livewire\Attributes\Validate;
@@ -31,24 +31,22 @@ class ListClient extends Component
 
     public function submit()
     {
-        $this->dispatch('client-created')->self();
-        $this->clear();
+        $this->validate();
+        $data = [
+            'recommended_by' => $this->recommended_by,
+            'name' => $this->name,
+            'reference' => $this->reference,
+            'whatsapp' => $this->whatsapp,
+            'phone' => $this->phone,
+            'email' => $this->email
+        ];
 
-        // $this->validate();
-        // $data = [
-        //     'recommended_by' => $this->recommended_by,
-        //     'name' => $this->name,
-        //     'reference' => $this->reference,
-        //     'whatsapp' => $this->whatsapp,
-        //     'phone' => $this->phone,
-        //     'email' => $this->email
-        // ];
-
-        // try {
-        //     $client = Client::query()->create($data);
-        // } catch (\Throwable $th) {
-        //     dd('Erro ao salvar cliente', $th);
-        // }
+        try {
+            $client = Client::query()->create($data);
+            return $this->redirect('/clientes/'.$client->id, navigate: true);
+        } catch (\Throwable $th) {
+            dd('Erro ao salvar cliente', $th);
+        }
     }
 
     public function loadIndications()
@@ -64,6 +62,6 @@ class ListClient extends Component
     public function render()
     {
         $clients = Client::query()->with('parent')->orderBy('name')->paginate(10);
-        return view('livewire.clients.list-client', compact('clients'));
+        return view('livewire.client.list-client', compact('clients'));
     }
 }

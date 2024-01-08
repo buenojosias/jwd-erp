@@ -32,6 +32,6 @@ class Client extends Model
 
     public function receipts(): HasMany
     {
-        return $this->hasMany(Service::class);
+        return $this->hasMany(Receipt::class);
     }
 }
