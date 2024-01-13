@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('client_id')->constrained();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->decimal('amount', 9, 2);
+            $table->decimal('amount', 9, 2)->nullable();
             $table->string('status');
             $table->date('requested_at');
             $table->date('start_date')->nullable();

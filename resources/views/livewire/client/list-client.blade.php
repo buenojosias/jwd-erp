@@ -80,7 +80,7 @@
     </x-modal>
 
     {{-- <x-modal name="editModal" x-on:open="$dispatch('edit-modal', { the_client: {{ $client }} })" x-on:client-updated="close" persistent> --}}
-    <x-modal name="editModal" x-on:client-updated="close" x:on:close="close" persisetnt>
+    <x-modal name="editModal" x-on:client-updated="close" x:on:close="close" persistent>
         <livewire:client.edit-client :client="$client" />
     </x-modal>
 </div>

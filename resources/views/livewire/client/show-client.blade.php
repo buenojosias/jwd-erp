@@ -78,7 +78,7 @@
         <x-card title="Serviços" padding="none" class="overflow-x-auto">
             <x-slot name="action">
                 <div>
-                    <x-button flat icon="plus" />
+                    <x-button flat icon="plus" @click="$openModal('createServiceModal')" />
                     <x-button flat icon="chevron-down" x-show="!services"
                         @click="services = true; $wire.loadServices()" />
                     <x-button flat icon="chevron-up" x-show="services" @click="services = false" />
@@ -88,8 +88,8 @@
                 <table>
                     <thead>
                         <tr>
+                            <th scope="col">Data</th>
                             <th scope="col">Título</th>
-                            <th scope="col">Solicitado em</th>
                             <th scope="col">Prazo</th>
                             <th scope="col">Status</th>
                             <th scope="col">Valor</th>
@@ -101,12 +101,12 @@
                     <tbody>
                         @foreach ($services as $service)
                             <tr>
+                                <td>{{ $service->requested_at->format('d/m/Y') }}</td>
                                 <td>
-                                    <a href="{{ route('client.show', $client) }}" wire:navigate>
+                                    <a href="{{ route('service.show', $service) }}" wire:navigate>
                                         {{ $service->title }}
                                     </a>
                                 </td>
-                                <td>{{ $service->requested_at->format('d/m/Y') }}</td>
                                 <td>{{ $service->end_date ? $service->end_date->format('d/m/Y') : '' }}</td>
                                 <td>{{ $service->status }}</td>
                                 <td>R$ {{ number_format($service->amount, 2, ',', '.') ?? '' }}</td>
@@ -170,9 +170,13 @@
         </x-card>
     </div>
 
-    {{-- <x-modal name="editModal" x-on:open="$dispatch('edit-modal', { client: {{ $client }} })" x-on:client-updated="close" persistent> --}}
     <x-modal name="editModal" x-on:open="$dispatch('load-indications')" x-on:client-updated="close" persistent>
         <livewire:client.edit-client :client="$client" />
+    </x-modal>
+
+    <x-modal name="createServiceModal" x-on:service-created="close" x-on:close="$dispatch('close')" x-on:open="$dispatch('load-clients')" persistent>
+        {{-- Remover x-on-open --}}
+        <livewire:service.create-service :client="$client" />
     </x-modal>
 
 </div>

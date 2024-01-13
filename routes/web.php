@@ -2,6 +2,8 @@
 
 use App\Livewire\Client\ListClient;
 use App\Livewire\Client\ShowClient;
+use App\Livewire\Service\ListService;
+use App\Livewire\Service\ShowService;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +29,8 @@ Route::view('profile', 'profile')
 
 Route::get('/clientes', ListClient::class)->name('client.list')->lazy();
 Route::get('/clientes/{client}', ShowClient::class)->name('client.show');
+
+Route::get('servicos', ListService::class)->name('service.list');
+Route::get('servicos/{service}', ShowService::class)->name('service.show');
 
 require __DIR__.'/auth.php';
