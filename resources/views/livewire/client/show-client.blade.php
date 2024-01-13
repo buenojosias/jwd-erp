@@ -7,19 +7,13 @@
         <div class="bg-white p-6">
             <div class="sm:flex sm:items-center sm:justify-between">
                 <div class="sm:flex sm:space-x-5">
-                    {{-- <div class="flex-shrink-0">
-                        <img class="mx-auto h-20 w-20 rounded-full"
-                            src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
-                            alt="">
-                    </div> --}}
                     <div class="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
                         <p class="text-xl font-bold text-gray-900 sm:text-2xl">{{ $client->name }}</p>
                         <p class="text-sm font-medium text-gray-600">{{ $client->reference }}</p>
                     </div>
                 </div>
                 <div class="mt-5 flex justify-center sm:mt-0">
-                    <x-button label="Editar" x-on:click="$openModal('editModal')" />
-                    {{-- <x-button label="Editar" x-on:click="$wire.openEditModal" /> --}}
+                    <x-button label="Editar" x-on:click="$dispatch('load-client', { client: {{ $client }} }); $openModal('editModal')" />
                 </div>
             </div>
         </div>
@@ -83,9 +77,12 @@
     <div x-data="{ services: false }">
         <x-card title="Serviços" padding="none" class="overflow-x-auto">
             <x-slot name="action">
-                <x-button icon="plus" secondary sm />
-                <x-button flat icon="chevron-down" x-show="!services" @click="services = true" />
-                <x-button flat icon="chevron-up" x-show="services" @click="services = false" />
+                <div>
+                    <x-button flat icon="plus" />
+                    <x-button flat icon="chevron-down" x-show="!services"
+                        @click="services = true; $wire.loadServices()" />
+                    <x-button flat icon="chevron-up" x-show="services" @click="services = false" />
+                </div>
             </x-slot>
             <div class="table-wrapper" x-show="services">
                 <table>
@@ -105,9 +102,9 @@
                         @foreach ($services as $service)
                             <tr>
                                 <td>
-                                    {{-- <a href="{{ route('client.show', $client) }}" wire:navigate> --}}
-                                    {{ $service->title }}
-                                    {{-- </a> --}}
+                                    <a href="{{ route('client.show', $client) }}" wire:navigate>
+                                        {{ $service->title }}
+                                    </a>
                                 </td>
                                 <td>{{ $service->requested_at->format('d/m/Y') }}</td>
                                 <td>{{ $service->end_date ? $service->end_date->format('d/m/Y') : '' }}</td>
@@ -131,9 +128,12 @@
     <div x-data="{ receipts: false }">
         <x-card title="Pagamentos" padding="none" class="overflow-x-auto">
             <x-slot name="action">
-                <x-button icon="plus" secondary sm />
-                <x-button flat icon="chevron-down" x-show="!receipts" @click="receipts = true" />
-                <x-button flat icon="chevron-up" x-show="receipts" @click="receipts = false" />
+                <div>
+                    <x-button flat icon="plus" />
+                    <x-button flat icon="chevron-down" x-show="!receipts"
+                        @click="receipts = true; $wire.loadReceipts()" />
+                    <x-button flat icon="chevron-up" x-show="receipts" @click="receipts = false" />
+                </div>
             </x-slot>
             <div class="table-wrapper" x-show="receipts">
                 <table>
@@ -170,7 +170,8 @@
         </x-card>
     </div>
 
-    <x-modal name="editModal" x-on:open="$dispatch('edit-modal', { client: {{ $client }} })" x-on:client-updated="close" persistent>
+    {{-- <x-modal name="editModal" x-on:open="$dispatch('edit-modal', { client: {{ $client }} })" x-on:client-updated="close" persistent> --}}
+    <x-modal name="editModal" x-on:open="$dispatch('load-indications')" x-on:client-updated="close" persistent>
         <livewire:client.edit-client :client="$client" />
     </x-modal>
 

@@ -15,8 +15,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="h-full font-sans antialiased">
-    <div class="min-h-[640px] bg-gray-50">
+<body class="h-full font-sans antialiased bg-gray-100">
+    <div class="min-h-[640px] bg-gray-100">
         <div x-data="{ open: false }" @keydown.window.escape="open = false">
             <div x-show="open" class="relative z-40 md:hidden"
                 x-description="Off-canvas menu for mobile, show/hide based on off-canvas menu state." x-ref="dialog"

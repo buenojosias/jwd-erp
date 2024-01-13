@@ -11,6 +11,13 @@ class ListClient extends Component
 {
     use WithPagination;
 
+    #[On('client-updated')]
+    public function refreshClient()
+    {
+        session()->flash('status', 'Cliente atualizado com sucesso.');
+        $this->client->refresh();
+    }
+
     public $indications = [];
     public $recommended_by;
 
@@ -33,7 +40,7 @@ class ListClient extends Component
     {
         $this->validate();
         $data = [
-            'recommended_by' => $this->recommended_by,
+            'recommended_by' => $this->recommended_by != '' ? $this->recommended_by : null,
             'name' => $this->name,
             'reference' => $this->reference,
             'whatsapp' => $this->whatsapp,
@@ -43,6 +50,7 @@ class ListClient extends Component
 
         try {
             $client = Client::query()->create($data);
+            session()->flash('status', 'Cliente cadastrado com sucesso.');
             return $this->redirect('/clientes/'.$client->id, navigate: true);
         } catch (\Throwable $th) {
             dd('Erro ao salvar cliente', $th);

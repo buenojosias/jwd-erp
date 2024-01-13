@@ -30,16 +30,16 @@ class EditClient extends Component
     #[Validate('nullable|email')]
     public $email;
 
-    #[On('edit-modal')]
-    public function loadIndications($client)
+    #[On('load-indications')]
+    public function loadIndications()
     {
         $this->indications = Client::query()->select('id', 'name')->orderBy('name')->get();
-        $this->dispatch('loaded-indications', $client)->self();
     }
 
-    #[On('loaded-indications')]
+    #[On('load-client')]
     public function loadClient($client)
     {
+        $this->reset();
         $this->client_id = $client['id'];
         $this->recommended_by = $client['recommended_by'];
         $this->name = $client['name'];
@@ -53,7 +53,7 @@ class EditClient extends Component
     {
         $this->validate();
         $data = [
-            'recommended_by' => $this->recommended_by,
+            'recommended_by' => $this->recommended_by != '' ? $this->recommended_by : null,
             'name' => $this->name,
             'reference' => $this->reference,
             'whatsapp' => $this->whatsapp,
@@ -65,7 +65,6 @@ class EditClient extends Component
             if (Client::query()->findOrFail($this->client_id)->update($data)) {
                 $this->dispatch('client-updated');
             };
-            // return $this->redirect('/clientes/'.$client->id, navigate: true);
         } catch (\Throwable $th) {
             dd('Erro ao salvar cliente', $th);
         }

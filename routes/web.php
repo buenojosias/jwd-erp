@@ -26,6 +26,6 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 Route::get('/clientes', ListClient::class)->name('client.list')->lazy();
-Route::get('/clientes/{client}', ShowClient::class)->name('client.show')->lazy();
+Route::get('/clientes/{client}', ShowClient::class)->name('client.show');
 
 require __DIR__.'/auth.php';

@@ -37,10 +37,9 @@
                                 <td>{{ $client->parent->name ?? '' }}</td>
                                 <td
                                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                    <a href="#">
-                                        <x-button rounded sm icon="pencil" flat gray hover:outline.negative
-                                            focus:solid.positive />
-                                    </a>
+                                    <x-button rounded sm icon="pencil"
+                                    x-on:click="$dispatch('load-indications'); $dispatch('load-client', { client: {{ $client }} }); $openModal('editModal')"
+                                        flat gray />
                                 </td>
                             </tr>
                         @endforeach
@@ -57,8 +56,8 @@
             <form class="space-y-4">
                 <x-input label="Nome" wire:model="name" />
                 <div class="grid sm:grid-cols-2 sm:gap-4">
-                    <x-input label="WhatsApp" wire:model="whatsapp" />
-                    <x-input label="Telefone" wire:model="phone" />
+                    <x-input x-mask="(99) 99999-9999" label="WhatsApp" wire:model="whatsapp" />
+                    <x-input x-mask="(99) 9999-9999" label="Telefone" wire:model="phone" />
                 </div>
                 <x-input label="E-mail" wire:model="email" />
                 <div class="grid sm:grid-cols-2 sm:gap-4">
@@ -78,5 +77,10 @@
                 </x-slot>
             </form>
         </x-card>
+    </x-modal>
+
+    {{-- <x-modal name="editModal" x-on:open="$dispatch('edit-modal', { the_client: {{ $client }} })" x-on:client-updated="close" persistent> --}}
+    <x-modal name="editModal" x-on:client-updated="close" x:on:close="close" persisetnt>
+        <livewire:client.edit-client :client="$client" />
     </x-modal>
 </div>
