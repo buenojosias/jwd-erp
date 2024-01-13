@@ -30,16 +30,19 @@ class EditClient extends Component
     #[Validate('nullable|email')]
     public $email;
 
-    #[On('load-indications')]
     public function loadIndications()
     {
-        $this->indications = Client::query()->select('id', 'name')->orderBy('name')->get();
+        if(empty($this->indications)) {
+            $this->indications = Client::query()->select('id', 'name')->orderBy('name')->get();
+        } else {
+            dd('está preenchido');
+        }
     }
 
     #[On('load-client')]
     public function loadClient($client)
     {
-        $this->reset();
+        $this->loadIndications();
         $this->client_id = $client['id'];
         $this->recommended_by = $client['recommended_by'];
         $this->name = $client['name'];
@@ -68,6 +71,12 @@ class EditClient extends Component
         } catch (\Throwable $th) {
             dd('Erro ao salvar cliente', $th);
         }
+    }
+
+    #[On('close')]
+    public function clear()
+    {
+        $this->reset();
     }
 
     public function render()

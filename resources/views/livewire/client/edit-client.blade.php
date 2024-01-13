@@ -9,14 +9,20 @@
             <x-input label="E-mail" wire:model="email" />
             <div class="grid sm:grid-cols-2 sm:gap-4">
                 <x-input label="Referência" wire:model="reference" />
-                <x-native-select label="Indicado(a) por:" wire:model="recommended_by">
-                    <option value="">Selecione</option>
-                    @foreach ($indications as $indication)
-                        <option value="{{ $indication->id }}">{{ $indication->id }} - {{ $indication->name }}</option>
-                    @endforeach
-                </x-native-select>
+                @if ($indications)
+                    <x-native-select label="Indicado(a) por:" wire:model="recommended_by">
+                        <option value="">Selecione</option>
+                        @foreach ($indications as $indication)
+                            <option value="{{ $indication->id }}">{{ $indication->name }}
+                            </option>
+                        @endforeach
+                    </x-native-select>
+                @else
+                    <x-native-select label="Indicado(a) por:">
+                        <option value="">Carregando lista...</option>
+                    </x-native-select>
+                @endif
             </div>
-            {{ $recommended_by ?? '' }}
             <x-slot name="footer">
                 <div class="flex justify-end gap-x-4">
                     <x-button flat label="Cancelar" x-on:click="close" />

@@ -5,7 +5,7 @@
                 <h1>Serviços</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <x-button primary label="Novo serviço" x-on:click="$openModal('createModal')" />
+                <x-button primary label="Novo serviço" @click="$openModal('createModal')" />
             </div>
         </div>
     </x-slot>

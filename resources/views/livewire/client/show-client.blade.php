@@ -170,12 +170,11 @@
         </x-card>
     </div>
 
-    <x-modal name="editModal" x-on:open="$dispatch('load-indications')" x-on:client-updated="close" persistent>
+    <x-modal name="editModal" x-on:client-updated="close" x-on:close="$dispatch('close')" persistent>
         <livewire:client.edit-client :client="$client" />
     </x-modal>
 
-    <x-modal name="createServiceModal" x-on:service-created="close" x-on:close="$dispatch('close')" x-on:open="$dispatch('load-clients')" persistent>
-        {{-- Remover x-on-open --}}
+    <x-modal name="createServiceModal" x-on:service-created="close" x-on:close="$dispatch('close')" persistent>
         <livewire:service.create-service :client="$client" />
     </x-modal>
 

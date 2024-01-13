@@ -9,6 +9,9 @@
             </div>
         </div>
     </x-slot>
+    @if (session('status'))
+        <x-alert :label="session('status')" />
+    @endif
     <div class="py-4">
         <x-card title="Clientes" padding="none" class="overflow-x-auto">
             <div class="table-wrapper">
@@ -38,7 +41,7 @@
                                 <td
                                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                     <x-button rounded sm icon="pencil"
-                                    x-on:click="$dispatch('load-indications'); $dispatch('load-client', { client: {{ $client }} }); $openModal('editModal')"
+                                    x-on:click="$dispatch('load-client', { client: {{ $client }} }); $openModal('editModal')"
                                         flat gray />
                                 </td>
                             </tr>
@@ -79,8 +82,7 @@
         </x-card>
     </x-modal>
 
-    {{-- <x-modal name="editModal" x-on:open="$dispatch('edit-modal', { the_client: {{ $client }} })" x-on:client-updated="close" persistent> --}}
-    <x-modal name="editModal" x-on:client-updated="close" x:on:close="close" persistent>
+    <x-modal name="editModal" x-on:client-updated="close" x-on:close="$dispatch('close')" persistent>
         <livewire:client.edit-client :client="$client" />
     </x-modal>
 </div>

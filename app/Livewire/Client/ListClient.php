@@ -3,6 +3,7 @@
 namespace App\Livewire\Client;
 
 use App\Models\Client;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -10,13 +11,6 @@ use Livewire\WithPagination;
 class ListClient extends Component
 {
     use WithPagination;
-
-    #[On('client-updated')]
-    public function refreshClient()
-    {
-        session()->flash('status', 'Cliente atualizado com sucesso.');
-        $this->client->refresh();
-    }
 
     public $indications = [];
     public $recommended_by;
@@ -60,6 +54,12 @@ class ListClient extends Component
     public function loadIndications()
     {
         $this->indications = Client::query()->select('id', 'name')->orderBy('name')->get();
+    }
+
+    #[On('client-updated')]
+    public function refreshClient()
+    {
+        session()->flash('status', 'Cliente atualizado com sucesso.');
     }
 
     public function clear()
