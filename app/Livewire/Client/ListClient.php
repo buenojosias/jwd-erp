@@ -44,8 +44,9 @@ class ListClient extends Component
 
         try {
             $client = Client::query()->create($data);
-            session()->flash('status', 'Cliente cadastrado com sucesso.');
-            return $this->redirect('/clientes/'.$client->id, navigate: true);
+            // session()->flash('status', 'Cliente cadastrado com sucesso.');
+            return $this->redirect('/clientes/'.$client->id, navigate: true)
+                ->with('status', 'Cliente cadastrado com sucesso.');
         } catch (\Throwable $th) {
             dd('Erro ao salvar cliente', $th);
         }

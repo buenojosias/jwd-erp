@@ -18,12 +18,15 @@
             <div class="grid sm:grid-cols-2 sm:gap-4">
                 <x-native-select label="Status" wire:model="status">
                     <option value="">Selecione</option>
-                    <option value="Analisando">Analisando</option>
+                    @foreach (App\Enums\ServiceStatus::cases() as $status)
+                        <option value="{{ $status->name }}">{{ $status->value }}</option>
+                    @endforeach
+                    {{-- <option value="Analisando">Analisando</option>
                     <option value="Aguardando">Aguardando</option>
                     <option value="Em execução">Em execução</option>
                     <option value="Em aprovação">Em aprovação</option>
                     <option value="Concluído">Concluído</option>
-                    <option value="Atrasado">Atrasado</option>
+                    <option value="Atrasado">Atrasado</option> --}}
                 </x-native-select>
                 <x-inputs.currency label="Valor" prefix="R$" thousands="." decimal="," wire:model="amount" />
                 <x-datetime-picker without-time without-tips label="Data da solicitação"
