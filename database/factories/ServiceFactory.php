@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\ServiceStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,7 +23,7 @@ class ServiceFactory extends Factory
             'title' => fake()->sentence(),
             'description' => fake()->randomElement([null, fake()->text()]) ,
             'amount' => rand(50, 300),
-            'status' => fake()->randomElement(['Aguardando', 'Em execução', 'Concluído', 'Atrasado']),
+            'status' => fake()->randomElement(ServiceStatus::cases())->value,
             'requested_at' => $requested_at,
             'start_date' => fake()->randomElement([null, fake()->dateTimeBetween($requested_at, '+30 days')]),
             'end_date' => fake()->randomElement([null, fake()->dateTimeBetween($requested_at, '+30 days')]),

@@ -40,7 +40,7 @@
                                     </a>
                                 </td>
                                 <td>{{ $service->end_date ? $service->end_date->format('d/m/Y') : '' }}</td>
-                                <td>{{ $service->status->value }}</td>
+                                <td>{{ $service->status->name }}</td>
                                 <td
                                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                     <a href="#">
@@ -53,6 +53,9 @@
                     </tbody>
                 </table>
             </div>
+            <x-slot name="footer">
+                {{ $services->links() }}
+            </x-slot>
         </x-card>
     </div>
 

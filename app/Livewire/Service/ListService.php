@@ -11,7 +11,7 @@ class ListService extends Component
     {
         $services = Service::query()
             ->with('client')
-            ->get();
+            ->paginate();
 
         return view('livewire.service.list-service', compact('services'));
     }

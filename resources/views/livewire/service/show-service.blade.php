@@ -1,10 +1,12 @@
 <div class="grid grid-cols-1 gap-6 lg:grid-flow-col-dense lg:grid-cols-3">
     <div class="space-y-6 lg:col-span-2 lg:col-start-1">
-
+        @if (session('status'))
+            <x-alert :label="session('status')" />
+        @endif
         <x-card title="Detalhes do serviço">
             <x-slot name="action">
                 <div>
-                    <x-button sm icon="pencil" label="Editar" />
+                    <x-button sm icon="pencil" label="Editar" x-on:click="$openModal('editModal')" />
                     <x-button sm icon="plus" label="Etapa" />
                 </div>
             </x-slot>
@@ -38,45 +40,32 @@
                         {{ $service->description ?? 'Sem descrição' }}
                     </dd>
                 </div>
-                <div class="sm:col-span-2">
-                    <dt class="text-sm font-medium text-gray-500">Etapas</dt>
-                    <dd class="mt-1 text-sm text-gray-900">
-                        <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
-                            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                                <div class="flex w-0 flex-1 items-center">
-                                    <x-icon name="check" class="h-5 w-5 text-gray-400" />
-                                    <span class="ml-2 w-0 flex-1 truncate">resume_front_end_developer.pdf</span>
-                                </div>
-                                <div class="ml-4 flex-shrink-0">
-                                    <a href="#" class="font-medium text-blue-600 hover:text-blue-500">Download</a>
-                                </div>
-                            </li>
-                            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                                <div class="flex w-0 flex-1 items-center">
-                                    <x-icon name="check" class="h-5 w-5 text-green-600" />
-                                    <span class="ml-2 w-0 flex-1 truncate">coverletter_front_end_developer.pdf</span>
-                                </div>
-                                <div class="ml-4 flex-shrink-0">
-                                    <a href="#" class="font-medium text-blue-600 hover:text-blue-500">Download</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </dd>
-                </div>
+                <livewire:service.service-steps :service="$service" />
             </dl>
         </x-card>
-
     </div>
 
     <section class="lg:col-span-1 lg:col-start-3">
-        <div class="bg-gray-50 rounded-lg shadow border border-gray-100">
+        <div class="bg-gray-50 rounded-lg shadow border border-gray-100" x-data="{ status: false }">
             <div class="flex border-b p-4 items-end">
                 <div class="font-bold flex-1">
                     <dt class="text-sm">Valor</dt>
-                    <dd class="text-lg">R$ {{ $service->amount ?? 'Indefinido' }}</dd>
+                    <dd class="text-lg">R$ {{ number_format($service->amount, 2, ',', '.') ?? '' }}</dd>
                 </div>
                 <div>
-                    <x-badge primary label="{{ $service->status }}" />
+                    <x-badge primary label="{{ $service->status->name }}" class="cursor-pointer select-none"
+                        x-on:dblclick="status = true" />
+                </div>
+            </div>
+            <div class="border-b p-4 space-y-3 select-none" x-show="status">
+                <x-native-select label="Alterar status" wire:model="status">
+                    @foreach (App\Enums\ServiceStatus::cases() as $item)
+                        <option value="{{ $item->value }}">{{ $item->name }}</option>
+                    @endforeach
+                </x-native-select>
+                <div class="flex justify-end gap-x-2" x-on:status-updated="status = false">
+                    <x-button label="Cancelar" sm flat x-on:click="$wire.cancel; status = false" />
+                    <x-button label="Salvar" sm primary x-on:click="$wire.changeStatus" />
                 </div>
             </div>
             <div class="p-6 space-y-4 font-bold text-sm">
@@ -93,14 +82,18 @@
                     <dd class="text-gray-500">{{ $service->requested_at->format('d M Y') }}</dd>
                 </div>
                 @if ($service->end_date)
-                <div class="flex items-center space-x-3">
-                    <dt class="uo">
-                        <x-icon name="hand" class="text-gray-400 w-5 h-5" />
-                    </dt>
-                    <dd class="text-gray-500">{{ $service->end_date->format('d M Y') }}</dd>
-                </div>
+                    <div class="flex items-center space-x-3">
+                        <dt class="uo">
+                            <x-icon name="hand" class="text-gray-400 w-5 h-5" />
+                        </dt>
+                        <dd class="text-gray-500">{{ $service->end_date->format('d M Y') }}</dd>
+                    </div>
                 @endif
             </div>
         </div>
     </section>
+
+    <x-modal name="editModal" x-on:service-updated="close" x-on:close="$dispatch('close')" persistent>
+        <livewire:service.edit-service :service="$service" />
+    </x-modal>
 </div>

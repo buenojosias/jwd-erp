@@ -1,18 +1,6 @@
 <div>
     <x-card title="Novo serviço">
         <form class="space-y-4" wire:submit="save">
-            @if (!$client)
-                <x-native-select label="Cliente" wire:model="client_id" required>
-                    @if ($clients)
-                    <option value="">Selecione</option>
-                        @foreach ($clients as $client)
-                            <option value="{{ $client->id }}">{{ $client->name }}</option>
-                        @endforeach
-                    @else
-                        <option value="">Carregando clientes</option>
-                    @endif
-                </x-native-select>
-            @endif
             <x-input label="Título" wire:model="title" />
             <x-textarea label="Descrição" wire:model="description" />
             <div class="grid sm:grid-cols-2 sm:gap-4">
