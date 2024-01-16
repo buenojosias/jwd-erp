@@ -83,6 +83,6 @@
     </x-modal>
 
     <x-modal name="editModal" x-on:client-updated="close" x-on:close="$dispatch('close')" persistent>
-        <livewire:client.edit-client :client="$client" />
+        <livewire:client.edit-client :client="$client ?? null" />
     </x-modal>
 </div>
