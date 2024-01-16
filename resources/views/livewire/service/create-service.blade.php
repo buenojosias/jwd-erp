@@ -24,10 +24,10 @@
                 </x-native-select>
                 <x-inputs.currency label="Valor" prefix="R$" thousands="." decimal="," wire:model="amount" />
                 <x-datetime-picker without-time without-tips label="Data da solicitação"
-                    wire:model.defer="requested_at" />
-                <x-datetime-picker without-time without-tips label="Data de início" wire:model.defer="start_date" />
-                <x-datetime-picker without-time without-tips label="Prazo" wire:model.defer="end_date" />
-                <x-datetime-picker without-time without-tips label="Data de conclusão" wire:model.defer="finished_at" />
+                    wire:model="requested_at" />
+                <x-datetime-picker without-time without-tips label="Data de início" wire:model="start_date" />
+                <x-datetime-picker without-time without-tips label="Prazo" wire:model="end_date" />
+                <x-datetime-picker without-time without-tips label="Data de conclusão" wire:model="finished_at" />
             </div>
         </form>
         <x-slot name="footer">

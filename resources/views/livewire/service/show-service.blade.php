@@ -7,7 +7,7 @@
             <x-slot name="action">
                 <div>
                     <x-button sm icon="pencil" label="Editar" x-on:click="$openModal('editModal')" />
-                    <x-button sm icon="plus" label="Etapa" />
+                    <x-button sm icon="plus" label="Etapa" x-on:click="$dispatch('open-step-modal')" />
                 </div>
             </x-slot>
             <dl class="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
@@ -94,6 +94,6 @@
     </section>
 
     <x-modal name="editModal" x-on:service-updated="close" x-on:close="$dispatch('close')" persistent>
-        <livewire:service.edit-service :service="$service" />
+        <livewire:service.edit-service :$service />
     </x-modal>
 </div>

@@ -9,10 +9,13 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <style> [x-cloak] { display: none; } </style>
     @livewireStyles
     <!-- Scripts -->
     @wireUiScripts
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    <link rel="stylesheet" href="{{ asset('build/assets/app-ryMv0Wed.css') }}">
+    <script src="{{ asset('build/assets/app-0UyXd1MH.js') }}" defer></script>
 </head>
 
 <body class="h-full font-sans antialiased bg-gray-100">
