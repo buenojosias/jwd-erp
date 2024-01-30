@@ -10,7 +10,22 @@
         </div>
     </x-slot>
     <div class="py-4">
-        <x-card title="Serviços" padding="none" class="overflow-x-auto">
+        <x-card padding="none" class="overflow-x-auto">
+            <div class="w-full px-4 py-2 flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+                <div>
+                    @if (!$status)
+                        <x-toggle label="Exibir concluídos" wire:model.live="show_finished" />
+                    @endif
+                </div>
+                <div class="sm:w-1/3 md:1/4">
+                    <x-native-select wire:model.live="status">
+                        <option value="">Todos</option>
+                        @foreach (App\Enums\ServiceStatus::cases() as $status)
+                            <option value="{{ $status->value }}">{{ $status->name }}</option>
+                        @endforeach
+                    </x-native-select>
+                </div>
+            </div>
             <div class="table-wrapper">
                 <table>
                     <thead>
@@ -59,7 +74,8 @@
         </x-card>
     </div>
 
-    <x-modal name="createModal" x-on:service-created="close" x-on:close="$dispatch('close')" x-on:open="$dispatch('load-clients')" persistent>
+    <x-modal name="createModal" x-on:service-created="close" x-on:close="$dispatch('close')"
+        x-on:open="$dispatch('load-clients')" persistent>
         <livewire:service.create-service />
     </x-modal>
 </div>

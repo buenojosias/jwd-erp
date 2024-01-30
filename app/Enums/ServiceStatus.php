@@ -4,6 +4,7 @@ namespace App\Enums;
 
 enum ServiceStatus: string
 {
+    case Pendente = 'pendente';
     case Analisando = 'analisando';
     case Aguardando = 'aguardando';
     case Executando = 'executando';
