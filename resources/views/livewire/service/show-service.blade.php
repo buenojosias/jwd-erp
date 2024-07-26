@@ -53,7 +53,7 @@
                     <dd class="text-lg">R$ {{ number_format($service->amount, 2, ',', '.') ?? '' }}</dd>
                 </div>
                 <div>
-                    <x-badge primary label="{{ $service->status->name }}" class="cursor-pointer select-none"
+                    <x-badge primary label="{{ $service->status->value }}" class="cursor-pointer select-none"
                         x-on:dblclick="status = true" />
                 </div>
             </div>

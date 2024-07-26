@@ -6,7 +6,7 @@
             <x-native-select label="Status" wire:model="status">
                 <option value="">Selecione</option>
                 @foreach (App\Enums\StepStatusEnum::cases() as $item)
-                    <option value="{{ $item->value }}">{{ $item->name }}</option>
+                    <option value="{{ $item->value }}">{{ $item->value }}</option>
                 @endforeach
             </x-native-select>
             <x-datetime-picker without-time without-tips label="Data de início" wire:model="start_date" />

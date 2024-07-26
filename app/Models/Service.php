@@ -25,6 +25,7 @@ class Service extends Model
     ];
 
     protected $casts = [
+        'amount' => 'float',
         'status' => ServiceStatusEnum::class,
         'requested_at' => 'date:Y-m-d',
         'start_date' => 'date:Y-m-d',

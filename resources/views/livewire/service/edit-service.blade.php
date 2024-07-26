@@ -7,7 +7,7 @@
                 <x-native-select label="Status" wire:model="status">
                     <option value="">Selecione</option>
                     @foreach (App\Enums\ServiceStatusEnum::cases() as $status)
-                        <option value="{{ $status->value }}">{{ $status->name }}</option>
+                        <option value="{{ $status->value }}">{{ $status->value }}</option>
                     @endforeach
                 </x-native-select>
                 <x-inputs.currency label="Valor" prefix="R$" thousands="." decimal="," wire:model="amount" />
