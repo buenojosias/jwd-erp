@@ -12,6 +12,8 @@ class ShowClient extends Component
     public $services = [];
     public $receipts = [];
 
+    public $outstandingBalance = 0;
+
     #[On('client-updated')]
     public function refreshClient()
     {
@@ -29,10 +31,14 @@ class ShowClient extends Component
         $this->receipts = $this->client->receipts;
     }
 
-    public function mount(Client $client)
+    public function mount($client)
     {
-        $this->client = $client;
-        $this->client->load('parent');
+        $this->client = Client::with('parent')
+            ->withSum(['services' => fn ($query) => $query->where('status', 'Concluído')], 'amount')
+            ->withSum('receipts', 'amount')
+            ->findOrFail($client);
+
+        $this->outstandingBalance = $this->client->services_sum_amount - $this->client->receipts_sum_amount;
     }
 
     public function render()

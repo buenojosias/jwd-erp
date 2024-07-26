@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Service;
 
+use App\Enums\ServiceStatusEnum;
 use App\Models\Service;
 use Livewire\Component;
 
@@ -23,8 +24,13 @@ class ListService extends Component
             ->when(!$this->show_finished && !$this->status, function ($query) {
                 $query->where('status', '!=', 'concluído');
             })
-            ->orderBy(\DB::raw($this->order_by .' IS NULL, '. $this->order_by), $this->order)
+            ->orderBy($this->order_by, $this->order)
             ->paginate();
+
+        // $services = $services->getCollection()->transform(function($service) {
+        //     $service->color = ServiceStatusEnum::from($service->status->value)->color();
+        //     return $service;
+        // });
 
         return view('livewire.service.list-service', compact('services'));
     }

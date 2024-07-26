@@ -53,14 +53,15 @@
                     <dd class="text-lg">R$ {{ number_format($service->amount, 2, ',', '.') ?? '' }}</dd>
                 </div>
                 <div>
-                    <x-badge primary label="{{ $service->status->value }}" class="cursor-pointer select-none"
+                    @php $color = $service->status->color() @endphp
+                    <x-badge :$color label="{{ $service->status->value }}" class="cursor-pointer select-none"
                         x-on:dblclick="status = true" />
                 </div>
             </div>
             <div class="border-b p-4 space-y-3 select-none" x-show="status">
                 <x-native-select label="Alterar status" wire:model="status">
                     @foreach (App\Enums\ServiceStatusEnum::cases() as $item)
-                        <option value="{{ $item->value }}">{{ $item->name }}</option>
+                        <option value="{{ $item->value }}">{{ $item->value }}</option>
                     @endforeach
                 </x-native-select>
                 <div class="flex justify-end gap-x-2" x-on:status-updated="status = false">

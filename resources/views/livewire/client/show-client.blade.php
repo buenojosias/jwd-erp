@@ -32,7 +32,7 @@
 
             <div class="px-6 py-5 text-center text-sm font-medium">
                 <span class="text-gray-600">Saldo devedor:</span>
-                <span class="text-gray-900">R$ 200,00</span>
+                <span class="text-gray-900">RS {{ number_format($outstandingBalance, 2, ',', '.') }}</span>
             </div>
         </div>
     </div>

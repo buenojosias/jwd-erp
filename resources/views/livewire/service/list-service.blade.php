@@ -55,7 +55,11 @@
                                     </a>
                                 </td>
                                 <td>{{ $service->end_date ? $service->end_date->format('d/m/Y') : '' }}</td>
-                                <td>{{ $service->status->value }}</td>
+                                <td>
+                                    @php $color = $service->status->color() @endphp
+                                    <x-badge :$color :label="$service->status->value" flat rounded="full" sm />
+                                </td>
+                                {{-- <td>{{ $service->status->value }}</td> --}}
                                 <td
                                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                     <a href="#">
