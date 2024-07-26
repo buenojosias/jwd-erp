@@ -25,9 +25,9 @@ class Traffic extends Model
         return [
             'date' => 'date:d/m/Y',
             'time' => 'time',
-            'initial_km' => 'decimal',
-            'final_km' => 'decimal',
-            'distance' => 'decimal'
+            'initial_km' => 'float',
+            'final_km' => 'float',
+            'distance' => 'float'
         ];
     }
 

@@ -24,9 +24,9 @@ class Transaction extends Model
     {
         return [
             'date' => 'date:d/m/Y',
-            'amount' => 'decimal',
-            'balance_before' => 'decimal',
-            'balance_after' => 'decimal'
+            'amount' => 'float',
+            'balance_before' => 'float',
+            'balance_after' => 'float'
         ];
     }
 

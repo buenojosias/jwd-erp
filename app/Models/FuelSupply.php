@@ -24,9 +24,9 @@ class FuelSupply extends Model
     {
         return [
             'date' => 'date:d/m/Y',
-            'liters' => 'decimal',
-            'price' => 'decimal',
-            'amount' => 'decimal',
+            'liters' => 'float',
+            'price' => 'float',
+            'amount' => 'float',
         ];
     }
 

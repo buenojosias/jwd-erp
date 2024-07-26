@@ -11,7 +11,7 @@ class KbPayment extends Model
     protected $fillable = [ 'kb_student_id', 'reference', 'due_date', 'payment_date', 'payment_method' ];
 
     protected $casts = [
-        'amount' => 'decimal',
+        'amount' => 'float',
         'due_date' => 'date:d/m/Y',
         'payment_date' => 'date:d/m/Y',
     ];

@@ -15,6 +15,13 @@ class Wallet extends Model
         'amount'
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'amount' => 'float',
+        ];
+    }
+
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);

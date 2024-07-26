@@ -23,7 +23,7 @@ class InvoiceItem extends Model
     {
         return [
             'date' => 'date:d/m/Y',
-            'amount' => 'decimal'
+            'amount' => 'float'
         ];
     }
 
