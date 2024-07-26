@@ -5,38 +5,40 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Transaction extends Model
+class InvoiceItem extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'wallet_id',
-        'identifier_id',
-        'description',
+        'invoice_id',
         'date',
+        'description',
+        'category',
         'amount',
-        'balance_before',
-        'balance_after'
     ];
 
     protected function casts(): array
     {
         return [
             'date' => 'date:d/m/Y',
-            'amount' => 'decimal',
-            'balance_before' => 'decimal',
-            'balance_after' => 'decimal'
+            'amount' => 'decimal'
         ];
     }
 
-    public function wallet(): BelongsTo
+    public function invoice(): BelongsTo
     {
-        return $this->belongsTo(Wallet::class);
+        return $this->belongsTo(Invoice::class);
     }
 
-    public function identifier(): BelongsTo
+    public function identifies(): BelongsTo
     {
         return $this->belongsTo(Identifier::class);
+    }
+
+    public function fuelSupplies(): HasMany
+    {
+        return $this->hasMany(FuelSupply::class);
     }
 }

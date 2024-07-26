@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Enums\StepStatus;
+use App\Enums\StepStatusEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,7 +21,7 @@ class StepFactory extends Factory
             'service_id' => 20,
             'title' => fake()->sentence(),
             'description' => fake()->text(125),
-            'status' => fake()->randomElement(StepStatus::cases())->value,
+            'status' => fake()->randomElement(StepStatusEnum::cases())->value,
             'start_date' => fake()->dateTimeBetween('-10 days', '+10 days'),
             'end_date' => fake()->dateTimeBetween('-10 days', '+10 days'),
         ];

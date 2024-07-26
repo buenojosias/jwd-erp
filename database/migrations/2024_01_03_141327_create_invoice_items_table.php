@@ -8,19 +8,19 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('receipts', function (Blueprint $table) {
+        Schema::create('invoice_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->constrained();
-            $table->foreignId('transaction_id')->constrained();
+            $table->foreignId('invoice_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('identifier_id')->nullable()->constrained();
             $table->date('date');
-            $table->decimal('amount', 9, 2);
-            $table->text('note')->nullable();
+            $table->string('description');
+            $table->decimal('amount', 8, 2);
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('receipts');
+        Schema::dropIfExists('invoice_items');
     }
 };

@@ -8,9 +8,6 @@ use Illuminate\Database\Seeder;
 
 class ReceiptSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         Receipt::factory(14)->create();

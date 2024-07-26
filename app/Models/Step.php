@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\StepStatus;
+use App\Enums\StepStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,7 +21,7 @@ class Step extends Model
     ];
 
     protected $casts = [
-        'status' => StepStatus::class,
+        'status' => StepStatusEnum::class,
         'start_date' => 'date:Y-m-d',
         'end_date' => 'date:Y-m-d',
     ];

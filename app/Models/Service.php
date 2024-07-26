@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\ServiceStatus;
+use App\Enums\ServiceStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,7 +25,7 @@ class Service extends Model
     ];
 
     protected $casts = [
-        'status' => ServiceStatus::class,
+        'status' => ServiceStatusEnum::class,
         'requested_at' => 'date:Y-m-d',
         'start_date' => 'date:Y-m-d',
         'end_date' => 'date:Y-m-d',

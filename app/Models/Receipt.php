@@ -20,6 +20,7 @@ class Receipt extends Model
 
     protected $casts = [
         'date' => 'date:Y-m-d',
+        'amount' => 'decimal',
     ];
 
     public function client(): BelongsTo

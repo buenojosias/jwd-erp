@@ -6,15 +6,12 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('wallet_id')->constrained();
-            $table->string('identifier'); // Cliente, Aula, Aplicativo, Venda, Fatura, Mercado, Combustível
+            $table->foreignId('identifier_id')->constrained(); // Cliente, Aula, Aplicativo, Venda, Fatura, Mercado, Combustível
             $table->tinyText('description');
             $table->date('date');
             $table->decimal('amount', 9, 2);
@@ -24,9 +21,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('transactions');

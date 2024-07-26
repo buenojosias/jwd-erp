@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\KbStudentStatus;
+use App\Enums\KbStudentStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,7 +17,7 @@ class KbStudent extends Model
     protected $casts = [
         'birth' => 'date:d/m/Y',
         'registration_date' => 'date:d/m/Y',
-        'status' => KbStudentStatus::class,
+        'status' => KbStudentStatusEnum::class,
     ];
 
     public function group(): BelongsTo

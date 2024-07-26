@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('invoices', function (Blueprint $table) {
@@ -18,7 +15,7 @@ return new class extends Migration
             $table->string('company'); // Ligga, Vivo, Will, Nubank
             $table->string('reference'); // Mês de referência
             $table->decimal('amount', 8, 2);
-            $table->string('status'); // Prévia, Fechada, Paga, Atrasada, Renegociada
+            $table->string('status', 20); // Prévia, Fechada, Paga, Atrasada, Renegociada
             $table->tinyText('note');
             $table->date('due_date')->nullable();
             $table->date('paid_at')->nullable();
@@ -26,9 +23,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('invoices');

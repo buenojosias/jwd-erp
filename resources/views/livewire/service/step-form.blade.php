@@ -5,7 +5,7 @@
             <x-textarea label="Descrição" wire:model="description" />
             <x-native-select label="Status" wire:model="status">
                 <option value="">Selecione</option>
-                @foreach (App\Enums\StepStatus::cases() as $item)
+                @foreach (App\Enums\StepStatusEnum::cases() as $item)
                     <option value="{{ $item->value }}">{{ $item->name }}</option>
                 @endforeach
             </x-native-select>

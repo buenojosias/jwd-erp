@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('services', function (Blueprint $table) {
@@ -17,7 +14,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->decimal('amount', 9, 2)->nullable();
-            $table->string('status');
+            $table->string('status', 24);
             $table->date('requested_at');
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable(); // Prazo de conclusão
@@ -26,9 +23,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('services');

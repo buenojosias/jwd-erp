@@ -59,7 +59,7 @@
             </div>
             <div class="border-b p-4 space-y-3 select-none" x-show="status">
                 <x-native-select label="Alterar status" wire:model="status">
-                    @foreach (App\Enums\ServiceStatus::cases() as $item)
+                    @foreach (App\Enums\ServiceStatusEnum::cases() as $item)
                         <option value="{{ $item->value }}">{{ $item->name }}</option>
                     @endforeach
                 </x-native-select>

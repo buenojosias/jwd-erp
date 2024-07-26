@@ -6,22 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('kb_groups', function (Blueprint $table) {
             $table->id();
-            $table->string('weekday');
+            $table->enum('weekday', [1,2,3,4,5,6,7]);
             $table->time('time');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('kb_groups');

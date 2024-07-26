@@ -20,7 +20,7 @@
                 <div class="sm:w-1/3 md:1/4">
                     <x-native-select wire:model.live="status">
                         <option value="">Todos</option>
-                        @foreach (App\Enums\ServiceStatus::cases() as $status)
+                        @foreach (App\Enums\ServiceStatusEnum::cases() as $status)
                             <option value="{{ $status->value }}">{{ $status->name }}</option>
                         @endforeach
                     </x-native-select>

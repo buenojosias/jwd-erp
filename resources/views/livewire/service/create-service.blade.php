@@ -18,7 +18,7 @@
             <div class="grid sm:grid-cols-2 sm:gap-4">
                 <x-native-select label="Status" wire:model="status">
                     <option value="">Selecione</option>
-                    @foreach (App\Enums\ServiceStatus::cases() as $status)
+                    @foreach (App\Enums\ServiceStatusEnum::cases() as $status)
                         <option value="{{ $status->value }}">{{ $status->name }}</option>
                     @endforeach
                 </x-native-select>

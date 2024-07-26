@@ -24,7 +24,7 @@ class ReceiptFactory extends Factory
 
         $transaction = Transaction::create([
             'wallet_id' => rand(1, 3),
-            'identifier' => 'Cliente',
+            'identifier_id' => 1,
             'description' => 'Recebimento do cliente ' .$client_id,
             'date' => $date,
             'amount' => $amount,

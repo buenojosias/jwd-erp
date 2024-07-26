@@ -6,14 +6,12 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('fuel_supplies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('transaction_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('transaction_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('invoice_item_id')->nullable()->constrained()->cascadeOnDelete();
             $table->date('date');
             $table->string('company');
             $table->decimal('liters', 6, 3);
@@ -23,9 +21,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('fuel_supplies');
