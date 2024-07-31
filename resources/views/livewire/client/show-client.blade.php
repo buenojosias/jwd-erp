@@ -9,11 +9,18 @@
                 <div class="sm:flex sm:space-x-5">
                     <div class="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
                         <p class="text-xl font-bold text-gray-900 sm:text-2xl">{{ $client->name }}</p>
-                        <p class="text-sm font-medium text-gray-600">{{ $client->reference }}</p>
+                        <p class="text-sm font-medium text-gray-600">{{ $client->reference }}
+                            @if ($client->archived)
+                                <x-badge info label="Arquivado" class="ml-1" />
+                            @endif
+                        </p>
                     </div>
                 </div>
-                <div class="mt-5 flex justify-center sm:mt-0">
-                    <x-button label="Editar" x-on:click="$dispatch('load-client', { client: {{ $client }} }); $openModal('editModal')" />
+                <div class="mt-5 flex justify-center sm:mt-0 gap-1">
+                    <x-button icon="archive" wire:click="toggleArchived" :color="$client->archived ? 'amber' : 'default'" flat />
+                    <x-button icon="star" wire:click="toggleHighlighted" :color="$client->highlighted ? 'amber' : 'default'" flat />
+                    <x-button label="Editar"
+                        x-on:click="$dispatch('load-client', { client: {{ $client }} }); $openModal('editModal')" />
                 </div>
             </div>
         </div>

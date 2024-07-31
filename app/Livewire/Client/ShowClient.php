@@ -45,4 +45,14 @@ class ShowClient extends Component
     {
         return view('livewire.client.show-client');
     }
+
+    public function toggleHighlighted()
+    {
+        $this->client->update(['highlighted' => !$this->client->highlighted]);
+    }
+
+    public function toggleArchived()
+    {
+        $this->client->update(['archived' => !$this->client->archived]);
+    }
 }

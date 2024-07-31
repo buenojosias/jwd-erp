@@ -17,8 +17,18 @@ class Client extends Model
         'reference',
         'whatsapp',
         'phone',
-        'email'
+        'email',
+        'highlighted',
+        'archived'
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'highlighted' => 'boolean',
+            'archived' => 'boolean'
+        ];
+    }
 
     public function parent(): BelongsTo
     {

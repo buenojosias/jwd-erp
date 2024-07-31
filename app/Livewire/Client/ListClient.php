@@ -30,6 +30,10 @@ class ListClient extends Component
     #[Validate('nullable|email')]
     public $email;
 
+    public $highlighted = false;
+
+    public $archived = false;
+
     public function submit()
     {
         $this->validate();
@@ -44,9 +48,8 @@ class ListClient extends Component
 
         try {
             $client = Client::query()->create($data);
-            // session()->flash('status', 'Cliente cadastrado com sucesso.');
-            return $this->redirect('/clientes/'.$client->id, navigate: true)
-                ->with('status', 'Cliente cadastrado com sucesso.');
+            session()->flash('status', 'Cliente cadastrado com sucesso.');
+            $this->redirectRoute('client.show', $client, navigate: true);
         } catch (\Throwable $th) {
             dd('Erro ao salvar cliente', $th);
         }
@@ -70,7 +73,19 @@ class ListClient extends Component
 
     public function render()
     {
-        $clients = Client::query()->with('parent')->orderBy('name')->paginate(10);
+        $clients = Client::query()
+            ->where('archived', $this->archived)
+            ->when($this->highlighted, fn($q) => $q->where('highlighted', true))
+            ->with('parent')
+            ->orderBy('name')
+            ->paginate(10);
+
         return view('livewire.client.list-client', compact('clients'));
+    }
+
+    public function toggleHighlighted($client)
+    {
+        $client = Client::findOrFail($client);
+        $client->update(['highlighted' => !$client->highlighted]);
     }
 }
