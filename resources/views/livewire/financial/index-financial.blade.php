@@ -26,7 +26,9 @@
                     <div class="value">{{ $wallets }}</div>
                 </div>
                 <div class="actions">
-                    sdd
+                    <a href="{{ route('financial.wallet.index') }}" wire:navigate>
+                        <x-icon name="chevron-right" class="w-5 h-5" />
+                    </a>
                 </div>
             </x-card>
             <x-card class="stats">
