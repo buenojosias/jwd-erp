@@ -21,17 +21,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($wallets as $wallet)
+                        @foreach ($wallets as $wallet)
                             <tr>
                                 <td>{{ $wallet->name }}</td>
                                 <td>R$ {{ number_format($wallet->balance, 2, ',', '.') }}</td>
                                 <td>
-                                    <x-button icon="pencil" wire:click="loadWallet({{$wallet->id}})" sm flat />
-                                    <x-button icon="chart-bar" x-on:click="$emit('deleteWallet', {{ $wallet->id }})" sm flat />
+                                    <x-button icon="pencil" wire:click="loadWallet({{ $wallet->id }})" sm flat />
+                                    <x-button icon="chart-bar" x-on:click="$emit('deleteWallet', {{ $wallet->id }})"
+                                        sm flat />
                                 </td>
                             </tr>
                         @endforeach
+                    </tbody>
                 </table>
+            </div>
         </x-card>
     </div>
 

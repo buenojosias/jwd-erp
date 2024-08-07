@@ -51,5 +51,14 @@
             </x-card>
         </div>
 
+        <div class="grid sm:grid-cols-3 gap-4">
+            <div class="sm:col-span-2">
+                asdf
+            </div>
+            <div>
+                <livewire:financial.identifier />
+            </div>
+        </div>
+
     </div>
 </div>
