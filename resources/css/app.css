@@ -37,3 +37,18 @@ dl dt {
 dl dd {
     @apply mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0;
 }
+.stats {
+    @apply flex justify-between;
+}
+.stats > .data {
+    @apply flex-1 flex flex-col;
+}
+.stats > .data > .label {
+    @apply text-sm font-medium text-gray-500;
+}
+.stats > .data > .value {
+    @apply text-lg font-semibold text-gray-900;
+}
+.stats > .actions {
+    @apply flex items-center space-x-2;
+}

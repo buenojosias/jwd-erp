@@ -4,4 +4,4 @@
 <x-nav-link :href="route('keyboard.index')" :active="request()->routeIs('keyboard.*')" icon="music-note">Aulas de teclado</x-nav-link>
 <x-nav-link href="#" icon="device-mobile">Aplicativos</x-nav-link>
 <x-nav-link href="#" icon="truck">Veículo</x-nav-link>
-<x-nav-link href="#" icon="currency-dollar">Financeiro</x-nav-link>
+<x-nav-link :href="route('financial.index')" :active="request()->routeIs('financial.*')" icon="currency-dollar">Financeiro</x-nav-link>

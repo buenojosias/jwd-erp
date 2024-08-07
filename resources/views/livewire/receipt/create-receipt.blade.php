@@ -27,7 +27,7 @@
                         <option value="">Carregando carteiras</option>
                     @endif
                 </x-native-select>
-                <x-textarea label="Observação" wire:model="notes" />
+                <x-textarea label="Observação" wire:model="note" />
             </div>
         </form>
         <x-slot name="footer">
