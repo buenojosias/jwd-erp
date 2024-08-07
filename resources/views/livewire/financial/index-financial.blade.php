@@ -17,7 +17,9 @@
                     <div class="value">R$ {{ number_format($balance, 2, ',', '.') }}</div>
                 </div>
                 <div class="actions">
-                    sdd
+                    <a href="{{ route('financial.transaction.index') }}" wire:navigate>
+                        <x-icon name="chevron-right" class="w-5 h-5" />
+                    </a>
                 </div>
             </x-card>
             <x-card class="stats">

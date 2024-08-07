@@ -6,6 +6,7 @@ use App\Livewire\Financial\IndexFinancial;
 use App\Livewire\Keyboard\IndexKeyboard;
 use App\Livewire\Service\ListService;
 use App\Livewire\Service\ShowService;
+use App\Livewire\Transaction\IndexTransaction;
 use App\Livewire\Wallet\ListWallet;
 use Illuminate\Support\Facades\Route;
 
@@ -39,5 +40,7 @@ Route::get('teclado', IndexKeyboard::class)->name('keyboard.index');
 Route::get('financeiro', IndexFinancial::class)->name('financial.index');
 
 Route::get('financeiro/carteiras', ListWallet::class)->name('financial.wallet.index');
+
+Route::get('financeiro/extrato', IndexTransaction::class)->name('financial.transaction.index');
 
 require __DIR__.'/auth.php';

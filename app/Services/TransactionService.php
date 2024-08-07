@@ -8,13 +8,14 @@ use App\Models\Wallet;
 class TransactionService
 
 {
-    public function createTransaction($data, $operation = 'out')
+    public function createTransaction($data)
     {
         if(! $wallet = Wallet::find($data['wallet_id']))
             return false;
 
         $balanceBefore = $wallet->balance;
-        $balanceAfter = $operation == 'out' ? $balanceBefore - $data['amount'] : $balanceBefore + $data['amount'];
+        $balanceAfter = $balanceBefore + $data['amount'];
+        // $balanceAfter = $operation == 'out' ? $balanceBefore - $data['amount'] : $balanceBefore + $data['amount'];
         $data['balance_before'] = $balanceBefore;
         $data['balance_after'] = $balanceAfter;
 

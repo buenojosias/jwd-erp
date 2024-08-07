@@ -14,7 +14,7 @@
     <!-- Scripts -->
     @wireUiScripts
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="stylesheet" href="{{ asset('build/assets/app-RCDZtt7D.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app-FxouFsPn.css') }}">
     <script src="{{ asset('build/assets/app-0UyXd1MH.js') }}" defer></script>
 </head>
 

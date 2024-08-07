@@ -71,8 +71,7 @@ class CreateReceipt extends Component
             'description' => 'Pagamento recebido de ' . $this->client->name,
             'date' => $this->date,
             'amount' => $this->amount,
-        ], 'in');
-
+        ]);
 
         if ($transaction) {
             $this->client->receipts()->create([
