@@ -74,7 +74,9 @@
                     <dt class="uo">
                         <x-icon name="user-circle" style="solid" class="text-gray-400 w-5 h-5" />
                     </dt>
-                    <dd class="text-gray-700">{{ $service->client->name }}</dd>
+                    <dd class="text-gray-700">
+                        <a href="{{ route('client.show', $service->client) }}">{{ $service->client->name }}</a>
+                    </dd>
                 </div>
                 <div class="flex items-center space-x-3">
                     <dt class="uo">

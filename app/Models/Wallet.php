@@ -12,13 +12,13 @@ class Wallet extends Model
 
     protected $fillable = [
         'name',
-        'amount'
+        'balance'
     ];
 
     protected function casts(): array
     {
         return [
-            'amount' => 'float',
+            'balance' => 'float',
         ];
     }
 

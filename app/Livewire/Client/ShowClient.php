@@ -36,7 +36,12 @@ class ShowClient extends Component
         $this->client = Client::with('parent')
             ->withSum(['services' => fn ($query) => $query->where('status', 'Concluído')], 'amount')
             ->withSum('receipts', 'amount')
+            ->withCount('services')
             ->findOrFail($client);
+
+        $this->client->pending_services_count = $this->client->services()
+            ->whereIn('status', ['Pendente', 'Analisando', 'Aguardando início'])
+            ->count();
 
         $this->outstandingBalance = $this->client->services_sum_amount - $this->client->receipts_sum_amount;
     }

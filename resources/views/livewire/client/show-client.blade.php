@@ -28,12 +28,12 @@
             class="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-50 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
 
             <div class="px-6 py-5 text-center text-sm font-medium">
-                <span class="text-gray-900">12</span>
-                <span class="text-gray-600">serviços contratados</span>
+                <span class="text-gray-900">{{ $client->services_count }}</span>
+                <span class="text-gray-600">{{ $client->services_count > 1 ? "serviços contratados" : "serviço contratado" }}</span>
             </div>
 
             <div class="px-6 py-5 text-center text-sm font-medium">
-                <span class="text-gray-900">4</span>
+                <span class="text-gray-900">{{ $client->pending_services_count }}</span>
                 <span class="text-gray-600">serviços pendentes</span>
             </div>
 
@@ -136,7 +136,7 @@
         <x-card title="Pagamentos" padding="none" class="overflow-x-auto">
             <x-slot name="action">
                 <div>
-                    <x-button flat icon="plus" />
+                    <x-button flat icon="plus" @click="$openModal('createReceiptModal')" />
                     <x-button flat icon="chevron-down" x-show="!receipts"
                         @click="receipts = true; $wire.loadReceipts()" />
                     <x-button flat icon="chevron-up" x-show="receipts" @click="receipts = false" />
@@ -185,4 +185,7 @@
         <livewire:service.create-service :client="$client" />
     </x-modal>
 
+    <x-modal name="createReceiptModal" x-on:receipt-created="close" x-on:close="$dispatch('close')" persistent>
+        <livewire:receipt.create-receipt :client="$client" />
+    </x-modal>
 </div>

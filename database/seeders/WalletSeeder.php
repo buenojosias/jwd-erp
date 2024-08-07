@@ -11,9 +11,9 @@ class WalletSeeder extends Seeder
     public function run(): void
     {
         $wallets = [
-            ['name' => 'Dinheiro', 'amount' => 22],
-            ['name' => 'Nubank', 'amount' => 204.5],
-            ['name' => 'Caixa', 'amount' => 18.94],
+            ['name' => 'Dinheiro', 'balance' => 22],
+            ['name' => 'Nubank', 'balance' => 204.5],
+            ['name' => 'Caixa', 'balance' => 18.94],
         ];
 
         Wallet::insert($wallets);
