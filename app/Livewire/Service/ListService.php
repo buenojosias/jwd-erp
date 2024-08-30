@@ -5,9 +5,12 @@ namespace App\Livewire\Service;
 use App\Enums\ServiceStatusEnum;
 use App\Models\Service;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ListService extends Component
 {
+    use WithPagination;
+
     public $show_finished = false;
     public $status;
 
