@@ -1,8 +1,10 @@
 <?php
 
+use App\Livewire\Appointment\ListAppointment;
 use App\Livewire\Client\ListClient;
 use App\Livewire\Client\ShowClient;
 use App\Livewire\Financial\IndexFinancial;
+use App\Livewire\Financial\PendingReceiptClients;
 use App\Livewire\Keyboard\IndexKeyboard;
 use App\Livewire\Service\ListService;
 use App\Livewire\Service\ShowService;
@@ -38,9 +40,10 @@ Route::get('servicos/{service}', ShowService::class)->name('service.show');
 Route::get('teclado', IndexKeyboard::class)->name('keyboard.index');
 
 Route::get('financeiro', IndexFinancial::class)->name('financial.index');
-
 Route::get('financeiro/carteiras', ListWallet::class)->name('financial.wallet.index');
-
 Route::get('financeiro/extrato', IndexTransaction::class)->name('financial.transaction.index');
+Route::get('financeiro/receber', PendingReceiptClients::class)->name('financial.receipt.pending');
+
+Route::get('agenda', ListAppointment::class)->name('appointment.list');
 
 require __DIR__.'/auth.php';

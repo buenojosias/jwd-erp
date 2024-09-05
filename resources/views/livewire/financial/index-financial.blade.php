@@ -48,7 +48,9 @@
                     <div class="value">R$ {{ number_format($receivables, 2, ',', '.') }}</div>
                 </div>
                 <div class="actions">
-                    sdd
+                    <a href="{{ route('financial.receipt.pending') }}" wire:navigate>
+                        <x-icon name="chevron-right" class="w-5 h-5" />
+                    </a>
                 </div>
             </x-card>
         </div>

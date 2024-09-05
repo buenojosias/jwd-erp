@@ -42,4 +42,9 @@ class Service extends Model
     {
         return $this->hasMany(Step::class);
     }
+
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class);
+    }
 }
