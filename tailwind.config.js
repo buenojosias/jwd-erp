@@ -1,10 +1,17 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 import forms from "@tailwindcss/forms";
-const colors = require("tailwindcss/colors");
+import colors from "tailwindcss/colors";
+import { existsSync } from "fs";
+import { createRequire } from "module";
+
+const require = createRequire(import.meta.url);
+const wireuiPreset = "./vendor/wireui/wireui/tailwind.config.js";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-    presets: [require("./vendor/wireui/wireui/tailwind.config.js")],
+    ...(existsSync(wireuiPreset)
+        ? { presets: [require(wireuiPreset)] }
+        : {}),
     content: [
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./storage/framework/views/*.php",
