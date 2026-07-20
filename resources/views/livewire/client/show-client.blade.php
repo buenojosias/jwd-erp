@@ -11,15 +11,15 @@
                         <p class="text-xl font-bold text-gray-900 sm:text-2xl">{{ $client->name }}</p>
                         <p class="text-sm font-medium text-gray-600">{{ $client->reference }}
                             @if ($client->archived)
-                                <x-badge info label="Arquivado" class="ml-1" />
+                                <x-ts-badge info label="Arquivado" class="ml-1" />
                             @endif
                         </p>
                     </div>
                 </div>
                 <div class="mt-5 flex justify-center sm:mt-0 gap-1">
-                    <x-button icon="archive" wire:click="toggleArchived" :color="$client->archived ? 'amber' : 'default'" flat />
-                    <x-button icon="star" wire:click="toggleHighlighted" :color="$client->highlighted ? 'amber' : 'default'" flat />
-                    <x-button label="Editar"
+                    <x-ts-button icon="archive" wire:click="toggleArchived" :color="$client->archived ? 'amber' : 'default'" flat />
+                    <x-ts-button icon="star" wire:click="toggleHighlighted" :color="$client->highlighted ? 'amber' : 'default'" flat />
+                    <x-ts-button label="Editar"
                         x-on:click="$dispatch('load-client', { client: {{ $client }} }); $openModal('editModal')" />
                 </div>
             </div>
@@ -45,10 +45,10 @@
     </div>
 
     <div x-data="{ detail: false }">
-        <x-card title="Detalhes" padding="none">
+        <x-ts-card title="Detalhes" padding="none">
             <x-slot name="action">
-                <x-button flat icon="chevron-down" x-show="!detail" @click="detail = true" />
-                <x-button flat icon="chevron-up" x-show="detail" @click="detail = false" />
+                <x-ts-button flat icon="chevron-down" x-show="!detail" @click="detail = true" />
+                <x-ts-button flat icon="chevron-up" x-show="detail" @click="detail = false" />
             </x-slot>
             <dl class="detail" x-show="detail">
                 <div>
@@ -82,13 +82,13 @@
     </div>
 
     <div x-data="{ services: false }">
-        <x-card title="Serviços" padding="none" class="overflow-x-auto">
+        <x-ts-card title="Serviços" padding="none" class="overflow-x-auto">
             <x-slot name="action">
                 <div>
-                    <x-button flat icon="plus" @click="$openModal('createServiceModal')" />
-                    <x-button flat icon="chevron-down" x-show="!services"
+                    <x-ts-button flat icon="plus" @click="$openModal('createServiceModal')" />
+                    <x-ts-button flat icon="chevron-down" x-show="!services"
                         @click="services = true; $wire.loadServices()" />
-                    <x-button flat icon="chevron-up" x-show="services" @click="services = false" />
+                    <x-ts-button flat icon="chevron-up" x-show="services" @click="services = false" />
                 </div>
             </x-slot>
             <div class="table-wrapper" x-show="services">
@@ -120,7 +120,7 @@
                                 <td
                                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                     <a href="#">
-                                        <x-button rounded sm icon="pencil" flat gray hover:outline.negative
+                                        <x-ts-button rounded sm icon="pencil" flat gray hover:outline.negative
                                             focus:solid.positive />
                                     </a>
                                 </td>
@@ -133,13 +133,13 @@
     </div>
 
     <div x-data="{ receipts: false }">
-        <x-card title="Pagamentos" padding="none" class="overflow-x-auto">
+        <x-ts-card title="Pagamentos" padding="none" class="overflow-x-auto">
             <x-slot name="action">
                 <div>
-                    <x-button flat icon="plus" @click="$openModal('createReceiptModal')" />
-                    <x-button flat icon="chevron-down" x-show="!receipts"
+                    <x-ts-button flat icon="plus" @click="$openModal('createReceiptModal')" />
+                    <x-ts-button flat icon="chevron-down" x-show="!receipts"
                         @click="receipts = true; $wire.loadReceipts()" />
-                    <x-button flat icon="chevron-up" x-show="receipts" @click="receipts = false" />
+                    <x-ts-button flat icon="chevron-up" x-show="receipts" @click="receipts = false" />
                 </div>
             </x-slot>
             <div class="table-wrapper" x-show="receipts">
@@ -165,7 +165,7 @@
                                 <td
                                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                     <a href="#">
-                                        <x-button rounded sm icon="pencil" flat gray hover:outline.negative
+                                        <x-ts-button rounded sm icon="pencil" flat gray hover:outline.negative
                                             focus:solid.positive />
                                     </a>
                                 </td>

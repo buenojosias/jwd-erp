@@ -1,16 +1,16 @@
 <div>
-    <x-card title="Editar cliente">
+    <x-ts-card title="Editar cliente">
         <form class="space-y-4">
-            <x-input label="Nome" placeholder="Carregando..." wire:model="name" />
+            <x-ts-input label="Nome" placeholder="Carregando..." wire:model="name" />
             <div class="grid sm:grid-cols-2 sm:gap-4">
-                <x-input label="WhatsApp" wire:model="whatsapp" />
-                <x-input label="Telefone" wire:model="phone" />
+                <x-ts-input label="WhatsApp" wire:model="whatsapp" />
+                <x-ts-input label="Telefone" wire:model="phone" />
             </div>
-            <x-input label="E-mail" wire:model="email" />
+            <x-ts-input label="E-mail" wire:model="email" />
             <div class="grid sm:grid-cols-2 sm:gap-4">
-                <x-input label="Referência" wire:model="reference" />
+                <x-ts-input label="Referência" wire:model="reference" />
                 @if ($indications)
-                    <x-native-select label="Indicado(a) por:" wire:model="recommended_by">
+                    <x-ts-select.native label="Indicado(a) por:" wire:model="recommended_by">
                         <option value="">Selecione</option>
                         @foreach ($indications as $indication)
                             <option value="{{ $indication->id }}">{{ $indication->name }}
@@ -18,15 +18,15 @@
                         @endforeach
                     </x-native-select>
                 @else
-                    <x-native-select label="Indicado(a) por:">
+                    <x-ts-select.native label="Indicado(a) por:">
                         <option value="">Carregando lista...</option>
                     </x-native-select>
                 @endif
             </div>
             <x-slot name="footer">
                 <div class="flex justify-end gap-x-4">
-                    <x-button flat label="Cancelar" x-on:click="close" />
-                    <x-button type="submit" primary label="Salvar" wire:click="submit" />
+                    <x-ts-button flat text="Cancelar" x-on:click="close" />
+                    <x-ts-button type="submit" primary label="Salvar" wire:click="submit" />
                 </div>
             </x-slot>
         </form>

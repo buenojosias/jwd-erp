@@ -7,14 +7,14 @@
                 <li class="space-y-3" x-data="{show: false}">
                     <div class="flex p-3 items-center justify-between text-sm bg-gray-100">
                         <div class="flex w-0 basis-1/2 items-center">
-                            <x-icon name="check" :class="$step->status->value === 'Concluído' ? 'text-green-600 h-5 w-5' : 'text-gray-500 h-5 w-5'" />
+                            <x-ts-icon name="check" :class="$step->status->value === 'Concluído' ? 'text-green-600 h-5 w-5' : 'text-gray-500 h-5 w-5'" />
                             <span class="ml-2 w-0 flex-1 truncate">{{ $step->title }}</span>
                         </div>
                         <div class="basis-1/4">
                             <span class="mr-2">{{ $step->status->value }}</span>
                         </div>
                         <div class="ml-4 flex-shrink-0">
-                            <x-button icon="chevron-down" sm flat x-on:click="show = !show" />
+                            <x-ts-button icon="chevron-down" sm flat x-on:click="show = !show" />
                         </div>
                     </div>
                     <div class="flex p-3 space-x-2" x-show="show">

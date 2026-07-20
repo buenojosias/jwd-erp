@@ -5,35 +5,35 @@
                 <h1>Financeiro</h1>
             </div>
             {{-- <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <x-button primary label="Adicionar cliente" x-on:click="$openModal('createModal')" />
+                <x-ts-button primary label="Adicionar cliente" x-on:click="$openModal('createModal')" />
             </div> --}}
         </div>
     </x-slot>
     <div class="py-4">
         <div class="mb-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            <x-card class="stats">
+            <x-ts-card class="stats">
                 <div class="data">
                     <div class="label">Saldo atual</div>
                     <div class="value">R$ {{ number_format($balance, 2, ',', '.') }}</div>
                 </div>
                 <div class="actions">
                     <a href="{{ route('financial.transaction.index') }}" wire:navigate>
-                        <x-icon name="chevron-right" class="w-5 h-5" />
+                        <x-ts-icon name="chevron-right" class="w-5 h-5" />
                     </a>
                 </div>
             </x-card>
-            <x-card class="stats">
+            <x-ts-card class="stats">
                 <div class="data">
                     <div class="label">Carteiras</div>
                     <div class="value">{{ $wallets }}</div>
                 </div>
                 <div class="actions">
                     <a href="{{ route('financial.wallet.index') }}" wire:navigate>
-                        <x-icon name="chevron-right" class="w-5 h-5" />
+                        <x-ts-icon name="chevron-right" class="w-5 h-5" />
                     </a>
                 </div>
             </x-card>
-            <x-card class="stats">
+            <x-ts-card class="stats">
                 <div class="data">
                     <div class="label">Faturas pendentes</div>
                     <div class="value">{{ $invoices }}</div>
@@ -42,14 +42,14 @@
                     sdd
                 </div>
             </x-card>
-            <x-card class="stats">
+            <x-ts-card class="stats">
                 <div class="data">
                     <div class="label">Valores a receber</div>
                     <div class="value">R$ {{ number_format($receivables, 2, ',', '.') }}</div>
                 </div>
                 <div class="actions">
                     <a href="{{ route('financial.receipt.pending') }}" wire:navigate>
-                        <x-icon name="chevron-right" class="w-5 h-5" />
+                        <x-ts-icon name="chevron-right" class="w-5 h-5" />
                     </a>
                 </div>
             </x-card>

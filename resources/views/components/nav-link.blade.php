@@ -7,6 +7,6 @@ $classes = ($active ?? false)
 @endphp
 
 <a {{ $attributes->merge(['class' => $classes]) }} wire:navigate>
-    <x-icon name="{{ $icon }}" class="mr-3 w-4 h-4 flex-shrink-0 text-sky-300" outline />
+    <x-ts-icon name="{{ $icon }}" class="mr-3 w-4 h-4 flex-shrink-0 text-sky-300" outline />
     {{ $slot }}
 </a>

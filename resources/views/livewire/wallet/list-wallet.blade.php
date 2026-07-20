@@ -5,12 +5,12 @@
                 <h1>Carteiras</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <x-button primary label="Adicionar carteira" x-on:click="$openModal('createModal')" />
+                <x-ts-button primary label="Adicionar carteira" x-on:click="$openModal('createModal')" />
             </div>
         </div>
     </x-slot>
     <div class="py-4">
-        <x-card title="Carteiras" padding="none" class="overflow-x-auto">
+        <x-ts-card title="Carteiras" padding="none" class="overflow-x-auto">
             <div class="table-wrapper">
                 <table>
                     <thead>
@@ -26,8 +26,8 @@
                                 <td>{{ $wallet->name }}</td>
                                 <td>R$ {{ number_format($wallet->balance, 2, ',', '.') }}</td>
                                 <td>
-                                    <x-button icon="pencil" wire:click="loadWallet({{ $wallet->id }})" sm flat />
-                                    <x-button icon="chart-bar" x-on:click="$emit('deleteWallet', {{ $wallet->id }})"
+                                    <x-ts-button icon="pencil" wire:click="loadWallet({{ $wallet->id }})" sm flat />
+                                    <x-ts-button icon="chart-bar" x-on:click="$emit('deleteWallet', {{ $wallet->id }})"
                                         sm flat />
                                 </td>
                             </tr>
@@ -39,14 +39,14 @@
     </div>
 
     <x-modal name="createModal" wire:model="modal" x-on:close="$wire.clear()" max-width="sm">
-        <x-card title="Adicionar cateira">
+        <x-ts-card title="Adicionar cateira">
             <form class="space-y-4">
-                <x-input label="Nome" wire:model="name" />
-                <x-inputs.currency label="Saldo" prefix="R$" thousands="." decimal="," wire:model="balance" />
+                <x-ts-input label="Nome" wire:model="name" />
+                <x-ts-inputs.currency label="Saldo" prefix="R$" thousands="." decimal="," wire:model="balance" />
                 <x-slot name="footer">
                     <div class="flex justify-end gap-x-4">
-                        <x-button flat label="Cancelar" x-on:click="close" />
-                        <x-button type="submit" primary label="Salvar" wire:click="submit" />
+                        <x-ts-button flat label="Cancelar" x-on:click="close" />
+                        <x-ts-button type="submit" primary label="Salvar" wire:click="submit" />
                     </div>
                 </x-slot>
             </form>

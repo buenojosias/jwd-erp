@@ -1,9 +1,9 @@
 <div>
-    <x-card title="{{ $step ? 'Editar' : 'Adicionar' }} etapa" class="w-full">
+    <x-ts-card title="{{ $step ? 'Editar' : 'Adicionar' }} etapa" class="w-full">
         <div class="flex flex-col gap-y-4">
-            <x-input label="Título" wire:model="title" />
-            <x-textarea label="Descrição" wire:model="description" />
-            <x-native-select label="Status" wire:model="status">
+            <x-ts-input label="Título" wire:model="title" />
+            <x-ts-textarea label="Descrição" wire:model="description" />
+            <x-ts-select.native label="Status" wire:model="status">
                 <option value="">Selecione</option>
                 @foreach (App\Enums\StepStatusEnum::cases() as $item)
                     <option value="{{ $item->value }}">{{ $item->value }}</option>
@@ -14,8 +14,8 @@
         </div>
         <x-slot name="footer">
             <div class="flex justify-end gap-x-4">
-                <x-button flat label="Cancelar" x-on:click="close" />
-                <x-button type="submit" primary label="Salvar" wire:click="save" />
+                <x-ts-button flat label="Cancelar" x-on:click="close" />
+                <x-ts-button type="submit" primary label="Salvar" wire:click="save" />
             </div>
         </x-slot>
     </x-card>

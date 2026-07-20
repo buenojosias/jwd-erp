@@ -5,17 +5,17 @@
                 <h1>Extrato de movimentações</h1>
             </div>
             {{-- <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <x-button primary label="Adicionar cliente" x-on:click="$openModal('createModal')" />
+                <x-ts-button primary label="Adicionar cliente" x-on:click="$openModal('createModal')" />
             </div> --}}
         </div>
     </x-slot>
 
     <div class="py-4">
-        <x-card title="Movimentações" padding="none" class="overflow-x-auto">
+        <x-ts-card title="Movimentações" padding="none" class="overflow-x-auto">
             <x-slot name="action">
                 <div class="w-24 flex gap-2">
-                    <x-native-select wire:model.live="perPage" :options="[5, 10, 20, 50, 100]" />
-                    <x-button icon="filter" x-on:click="$openModal('filterModal')" flat xs />
+                    <x-ts-select.native wire:model.live="perPage" :options="[5, 10, 20, 50, 100]" />
+                    <x-ts-button icon="filter" x-on:click="$openModal('filterModal')" flat xs />
                 </div>
             </x-slot>
             <div class="table-wraper">
@@ -54,13 +54,13 @@
     </div>
 
     <x-modal id="filterModal" wire:model="filterModal" max-width="md" x-on:open="$wire.modalOpened()">
-        <x-card title="Filtrar movimentações">
+        <x-ts-card title="Filtrar movimentações">
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <x-datetime-picker label="Data inicial" wire:model.live="startDate" without-time />
                 <x-datetime-picker label="Data inicial" wire:model.live="endDate" without-time />
-                <x-native-select label="Carteira" wire:model.live="walletId" placeholder="Selecione uma carteira"
+                <x-ts-select.native label="Carteira" wire:model.live="walletId" placeholder="Selecione uma carteira"
                     :options="$wallets" option-label="name" option-value="id" />
-                <x-native-select label="Identificador" wire:model.live="identifierId"
+                <x-ts-select.native label="Identificador" wire:model.live="identifierId"
                     placeholder="Selecione um identificador" :options="$identifiers" option-label="title" option-value="id" />
                 <div class="sm:col-span-2 grid sm:grid-cols-4 gap-2">
                     <x-label label="Fluxo" />
@@ -71,8 +71,8 @@
             </div>
             <x-slot name="footer">
                 <div class="flex justify-end gap-x-2">
-                    <x-button wire:click="resetFilter" label="Limpar filtros" />
-                    <x-button x-on:click="close" label="Fechar" flat />
+                    <x-ts-button wire:click="resetFilter" label="Limpar filtros" />
+                    <x-ts-button x-on:click="close" label="Fechar" flat />
                 </div>
             </x-slot>
         </x-card>

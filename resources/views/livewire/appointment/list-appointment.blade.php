@@ -1,25 +1,23 @@
 <div>
-    <x-slot name="header">
-        <div class="sm:flex sm:items-center">
-            <div class="sm:flex-auto">
-                <h1>Agenda</h1>
-            </div>
-            {{-- <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <x-button primary label="Adicionar cliente" x-on:click="$openModal('createModal')" />
-            </div> --}}
+    <div class="sm:flex sm:items-center">
+        <div class="sm:flex-auto">
+            <h1>Agenda</h1>
         </div>
-    </x-slot>
+        <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+            <x-ts-button text="Adicionar cliente" x-on:click="$openModal('createModal')" />
+        </div>
+    </div>
     <div class="py-4 grid lg:grid-cols-5 gap-6">
         <div class="col-span-5 lg:col-span-3 space-y-4">
-            <x-card padding="none">
+            <x-ts-card padding="none">
                 <div class="mb-1 py-2 md:px-3 flex border-b">
                     <div>
-                        <x-button wire:click="goToPreviusMonth" flat icon="chevron-left" />
+                        <x-ts-button wire:click="goToPreviusMonth" flat icon="chevron-left" />
                     </div>
                     <div class="pt-1 grow text-center font-semibold text-gray-800">
                         {{ \App\Enums\MonthEnum::from($selectedMonth)->label() }}/{{ $selectedYear }}</div>
                     <div>
-                        <x-button wire:click="goToNextMonth" flat icon="chevron-right" />
+                        <x-ts-button wire:click="goToNextMonth" flat icon="chevron-right" />
                     </div>
                 </div>
                 <div class="flex py-0.5">
@@ -77,7 +75,7 @@
                     </div>
                 </div>
             @empty
-                <x-card>
+                <x-ts-card>
                     <div class="text-center text-gray-500 text-sm font-semibold">
                         <p>Nenhum evento agendado
                             {{ $changed ? 'para o mês selecionado.' : 'para as próximas datas.' }} Clique no botão

@@ -7,9 +7,9 @@
         </div>
     </x-slot>
     <div class="py-4">
-        <x-card title="Valores a receber" padding="none" class="overflow-x-auto">
+        <x-ts-card title="Valores a receber" padding="none" class="overflow-x-auto">
             <x-slot name="action">
-                <x-toggle label="Apenas serviços concluídos" wire:model.live="onlyFinished" />
+                <x-ts-toggle label="Apenas serviços concluídos" wire:model.live="onlyFinished" />
             </x-slot>
             <div class="table-wrapper">
                 <table>

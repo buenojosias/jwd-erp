@@ -1,7 +1,7 @@
 <div>
-    <x-card title="Identificadores" padding="none" class="divide-y">
+    <x-ts-card title="Identificadores" padding="none" class="divide-y">
         <x-slot:action>
-            <x-button icon="plus" x-on:click="$openModal('createModal')" sm flat />
+            <x-ts-button icon="plus" x-on:click="$openModal('createModal')" sm flat />
         </x-slot>
         @foreach ($identifiers as $identifier)
             <div class="flex justify-between items-center px-4 py-2 text-sm">
@@ -18,13 +18,13 @@
     </x-card>
 
     <x-modal name="createModal" wire:model="modal" x-on:close="$wire.clear()" max-width="sm">
-        <x-card title="Adicionar identificador">
+        <x-ts-card title="Adicionar identificador">
             <form class="space-y-4">
-                <x-input label="Título" wire:model="title" />
+                <x-ts-input label="Título" wire:model="title" />
                 <x-slot name="footer">
                     <div class="flex justify-end gap-x-4">
-                        <x-button flat label="Cancelar" x-on:click="close" />
-                        <x-button type="submit" primary label="Salvar" wire:click="submit" />
+                        <x-ts-button flat label="Cancelar" x-on:click="close" />
+                        <x-ts-button type="submit" primary label="Salvar" wire:click="submit" />
                     </div>
                 </x-slot>
             </form>

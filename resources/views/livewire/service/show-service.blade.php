@@ -3,11 +3,11 @@
         @if (session('status'))
             <x-alert :label="session('status')" />
         @endif
-        <x-card title="Detalhes do serviço">
+        <x-ts-card title="Detalhes do serviço">
             <x-slot name="action">
                 <div>
-                    <x-button sm icon="pencil" label="Editar" x-on:click="$openModal('editModal')" />
-                    <x-button sm icon="plus" label="Etapa" x-on:click="$dispatch('open-step-modal')" />
+                    <x-ts-button sm icon="pencil" label="Editar" x-on:click="$openModal('editModal')" />
+                    <x-ts-button sm icon="plus" label="Etapa" x-on:click="$dispatch('open-step-modal')" />
                 </div>
             </x-slot>
             <dl class="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
@@ -54,25 +54,25 @@
                 </div>
                 <div>
                     @php $color = $service->status->color() @endphp
-                    <x-badge :$color label="{{ $service->status->value }}" class="cursor-pointer select-none"
+                    <x-ts-badge :$color label="{{ $service->status->value }}" class="cursor-pointer select-none"
                         x-on:dblclick="status = true" />
                 </div>
             </div>
             <div class="border-b p-4 space-y-3 select-none" x-show="status">
-                <x-native-select label="Alterar status" wire:model="status">
+                <x-ts-select.native label="Alterar status" wire:model="status">
                     @foreach (App\Enums\ServiceStatusEnum::cases() as $item)
                         <option value="{{ $item->value }}">{{ $item->value }}</option>
                     @endforeach
                 </x-native-select>
                 <div class="flex justify-end gap-x-2" x-on:status-updated="status = false">
-                    <x-button label="Cancelar" sm flat x-on:click="$wire.cancel; status = false" />
-                    <x-button label="Salvar" sm primary x-on:click="$wire.changeStatus" />
+                    <x-ts-button label="Cancelar" sm flat x-on:click="$wire.cancel; status = false" />
+                    <x-ts-button label="Salvar" sm primary x-on:click="$wire.changeStatus" />
                 </div>
             </div>
             <div class="p-6 space-y-4 font-bold text-sm">
                 <div class="flex items-center space-x-3">
                     <dt class="uo">
-                        <x-icon name="user-circle" style="solid" class="text-gray-400 w-5 h-5" />
+                        <x-ts-icon name="user-circle" style="solid" class="text-gray-400 w-5 h-5" />
                     </dt>
                     <dd class="text-gray-700">
                         <a href="{{ route('client.show', $service->client) }}">{{ $service->client->name }}</a>
@@ -80,14 +80,14 @@
                 </div>
                 <div class="flex items-center space-x-3">
                     <dt class="uo">
-                        <x-icon name="calendar" class="text-gray-400 w-5 h-5" />
+                        <x-ts-icon name="calendar" class="text-gray-400 w-5 h-5" />
                     </dt>
                     <dd class="text-gray-500">{{ $service->requested_at->format('d M Y') }}</dd>
                 </div>
                 @if ($service->end_date)
                     <div class="flex items-center space-x-3">
                         <dt class="uo">
-                            <x-icon name="hand" class="text-gray-400 w-5 h-5" />
+                            <x-ts-icon name="hand" class="text-gray-400 w-5 h-5" />
                         </dt>
                         <dd class="text-gray-500">{{ $service->end_date->format('d M Y') }}</dd>
                     </div>
