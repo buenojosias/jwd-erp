@@ -1,6 +1,10 @@
 @import "tailwindcss";
-@config "../../tailwind.config.js";
-@reference "tailwindcss";
+@import '../../vendor/tallstackui/tallstackui/css/v4.css';
+@plugin '@tailwindcss/forms'; 
+@source '../../vendor/tallstackui/tallstackui/**/*.php'; 
+
+/* @config "../../tailwind.config.js";
+@reference "tailwindcss"; */
 
 h1 {
     @apply text-2xl font-semibold text-gray-900;
